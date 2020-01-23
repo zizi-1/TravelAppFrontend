@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Travel App</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="img/z1.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+          rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/budget.css" rel="stylesheet">
+    <link href="css/poi.css" rel="stylesheet">
+    <link href="css/countdown.css" rel="stylesheet">
+
+</head>
+
+<body onload="getPoi(); getAllD()">
+
+<!--==========================
+Header
+============================-->
+<header id="header">
+    <div class="container">
+        <div class="pull-left">
+            <a href="#prettyHomePg">
+                <p id="logo">Travel App</p>
+            </a>
+        </div>
+        <span>&#9992;</span>
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="menu-active"><a href="#prettyHomePg">Home</a></li>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#details">Details</a></li>
+                <li><a href="#poiBudget">Budget / POI</a></li>
+                <span>&#9992;</span>
+            </ul>
+        </nav><!-- #nav-menu-container -->
+    </div>
+</header>
+
+<!--==========================
+  Pretty Home Page Section
+============================-->
+<section id="prettyHomePg">
+    <div class="hero-container">
+        <h1>Welcome to the TravelApp</h1>
+        <h2>“The world is a book and those who do not travel read only a page.” ~ Saint Augustine<span>&#9992;</span>
+        </h2>
+        <a href="#details" class="btn-get-started">Get Started</a>
+        <a href="#summary" class="btn-get-started" onclick="getAllD()">View Trip</a>
+    </div>
+</section>
+
+<!--==========================
+    Summary Section
+  ============================-->
+
+<section id="summary">
+    <div class="container">
+        <div class="row about-container">
+            <div class="col-lg-6 content order-lg-1 order-2">
+                <h2 class="title"><font color="#f0f8ff">Trip Summary</font></h2>
+                <p><font color="#f0f8ff">Your trip is below!</font></p>
+
+                <div class="zzz">
+                    <div class="destinationBox">
+                        <div class="containerSummary">
+                            <div class="destination-title"><span id="d"></span><br>
+                            </div>
+                            <hr/>
+                            <div id="dTemp" class="destination-title destination-weather-icon"><span>-1° C</span></div>
+                            <div id="dWeatherDesc" class="destination-weather-icon destination-title"><span>snow</span>
+                            </div>
+                            <div id="dWIcon" class="origin-title origin-weather-icon"></div>
+
+                            <img src="http://openweathermap.org/img/w/01d.png" alt="weather-icon"
+                                 class="destination-title" id="destination-weather-icon"/>
+                            <div class="destination-title">
+                                <div id="dt"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="arrows" class="downArrow bounce" style="color: transparent;  text-shadow: 0 0 0 white;">
+                    <!--                    <div id ="arrws" style="color: transparent;  text-shadow: 0 0 0 white;">&#xbb;</div>-->
+                    <i class="fa fa-angle-double-right fa-5x"></i>
+                    <i class="fa fa-angle-double-right fa-5x"></i>
+                    <i class="fa fa-angle-double-right fa-5x"></i>
+                    <i class="fa fa-angle-double-right fa-5x"></i>
+                </div>
+
+                <div class="aaa">
+                    <div class="originBox">
+                        <div class="containerSummary">
+                            <div class="origin-title"><span id="o"> </span><br></div>
+                            <hr/>
+                            <div id="oTemp" class="origin-title origin-weather-icon"><span>30° C</span></div>
+                            <div id="oWeatherDesc" class="origin-title origin-weather-icon"><span>cold</span>
+                            </div>
+                            <div id="oWIcon" class="origin-title origin-weather-icon"></div>
+
+                            <img src="http://openweathermap.org/img/w/01d.png" alt="weather-icon"
+                                 class="origin-title" id="origin-weather-icon"/>
+                            <div class="origin-title">
+                                <div id="df"></div>
+                            </div>
+
+                            <div class="icon-box wow fadeInUp box4" data-wow-delay="0.6s">
+                                <input type="button" class="btn btn-dark" value="Things To Do" target="_blank"
+                                       onclick=thingsToDo()>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--                    <div class="container">-->
+                    <!--                        <h1 id="head">Countdown to your Holiday:</h1>-->
+                    <!--                        <ul>-->
+                    <!--                            <li><span id="days"></span>Days</li>-->
+                    <!--                            <li><span id="hours"></span>Hours</li>-->
+                    <!--                            <li><span id="minutes"></span>Minutes</li>-->
+                    <!--                            <li><span id="seconds"></span>Seconds</li>-->
+                    <!--                        </ul>-->
+                    <!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--==========================
+    Details Section
+  ============================-->
+<section id="details">
+    <div class="container wow fadeIn">
+        <div class="section-header">
+            <h3 class="section-title">Details</h3>
+            <p class="section-description">Please enter the details of your trip on this page</p>
+        </div>
+        <form id="detailForm" onsubmit="/*displayDetails();*/ searchWeather(); return false;">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="box">
+                        <div class="icon"><a href=""><i class="fa fa-map-marker"></i></a></div>
+                        <h4 class="title"><a href="">Where are you travelling from?</a></h4>
+                        Origin: <input type="text" id="origin" name="Origin" pattern="[a-zA-Z]*"
+                                       placeholder="&#9992; From?" minlength="3" maxlength="15" required>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="box">
+                        <div class="icon"><a href=""><i class="fa fa-map-marker"></i></a></div>
+                        <h4 class="title"><a href="">Where are you travelling to?</a></h4>
+                        <br>Destination: <input type="text" id="destination" name="Destination" pattern="[a-zA-Z]*"
+                                                placeholder="&#9992; To?" minlength="3" maxlength="15" required>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="box">
+                        <div class="icon"><a href=""><i class="fa fa-paper-plane"></i></a></div>
+                        <h4 class="title"><a href="">View trip</a></h4>
+                        <br><a href="#summary" class="btn btn-dark" onclick="getAllD()">View Trip</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="box">
+                        <div class="icon"><a href=""><i class="fa fa-calendar-check-o"></i></a></div>
+                        <h4 class="title"><a href="">When are you going?</a></h4>
+
+                        <br>From: <input id="dateFrom" type="date" name="origin-date" required>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="box">
+                        <div class="icon"><a href=""><i class="fa fa-calendar-check-o"></i></a></div>
+                        <h4 class="title"><a href="">When are you coming back?</a></h4>
+
+                        <br>To: <input id="dateTo" type="date" name="return-date" required>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="box">
+                        <div class="icon"><a href=""><i class="fa fa-globe"></i></a></div>
+                        <h4 class="title">Submit<br><br>
+                            <button type="submit" id="addDetail" class="btn btn-success">Save Details</button>
+                        </h4>
+                        <!--                        <button class="btn btn-warning">Clear</button>-->
+                        <button class="btn btn-primary" onclick="updateDetail()">Update</button>
+                        <!--                    <button class="btn btn-primary" onclick="getCountdown()">Countdown</button>-->
+                        <button class="btn btn-danger" onclick="deleteDetail()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    </div>
+
+</section>
+
+<!--==========================
+  Call To Action Section
+  ============================-->
+<section id="call-to-action">
+    <div class="container wow fadeIn">
+        <div class="row"></div>
+    </div>
+</section>
+<!--==========================
+    poiBudget Section
+  ============================-->
+<section id="poiBudget">
+    <div class="container wow fadeInUp">
+        <div class="section-header">
+            <h3 class="section-title">Portfolio Places of Interest / Budget Calculator</h3>
+            <p class="section-description">View your places of interest or make use of our budget calculator!</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <ul id="portfolio-flters">
+                    <li data-filter=".filter-budget, .filter-poi" class="filter-active">All</li>
+                    <li data-filter=".filter-budget">Budget</li>
+                    <li data-filter=".filter-poi">Places of Interest</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="portfolio-item filter-budget">
+            <div class="bcss">
+                <div class="top">
+                    <div class="budget">
+                        <div class="budget__title">
+                            Available Budget <span class="budget__title--month"></span>:
+                        </div>
+
+                        <div class="budget__value">+ 0</div>
+
+                        <div class="budget__income clearfix">
+                            <div class="budget__income--text">Budget</div>
+                            <div class="right">
+                                <div class="budget__income--value">+ 0</div>
+                                <div class="budget__income--percentage">&nbsp;</div>
+                            </div>
+                        </div>
+
+                        <div class="budget__expenses clearfix">
+                            <div class="budget__expenses--text">Last Expense</div>
+                            <div class="right clearfix">
+                                <div class="budget__expenses--value">- 0</div>
+                                <div class="budget__expenses--percentage">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom">
+                    <div class="add">
+                        <div class="add__container">
+                            <select class="add__type">
+                                <option value="inc" selected>+</option>
+                                <option value="exp">-</option>
+                            </select>
+                            <input type="text" class="add__description" placeholder="Add description">
+                            <input type="number" class="add__value" placeholder="Value">
+                            <!-- <button class="add__btn"><div class="ion-ios-checkmark-outline"></div></button> -->
+                            <button class="add__btn"> &#x229E;</button>
+                        </div>
+                    </div>
+
+                    <div class="container clearfix">
+                        <div class="income">
+                            <h2 class="income__title">Budget</h2>
+                            <div class="income__list">
+                            </div>
+                        </div>
+
+
+                        <div class="expenses">
+                            <h2 class="expenses__title">Expenses</h2>
+
+                            <div class="expenses__list">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- POI -->
+        <div class="pcss">
+            <div class="portfolio-item filter-poi">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button class="btn btn-danger" onclick=" getPoi()">GetPOI</button>
+                            <h3>Add Poi</h3>
+                            <form id="poiForm" action="" onsubmit="addPoi(); getPoi();return false;">
+
+                                <input type="text" id="poiName" name="name" placeholder="Name"
+                                       minlength="3" maxlength="20" required>
+
+                                <input type="url" id="link" name="link" pattern="https://.*"
+                                       placeholder="Link" minlength="10" maxlength="50" required>
+                                <br>
+
+                                <button class="btn btn-primary" name="submit" type="submit" id="submitPoi">SUBMIT
+                                </button>
+                                <hr>
+                            </form>
+
+                            <div class="form-group form-control-sm">
+
+                                <label>Update ID:</label><input id="updateId" type="number"
+                                                                placeholder="Enter id to update">
+                                <button id="updatePoiModal" type="button">
+                                    Update
+                                </button>
+                            </div>
+
+                            <div class="form-control-sm">
+                                <label>Delete ID:</label><input id="id" type="number" placeholder="Enter id to delete">
+                                <button classs="btn btn-primary" id="deletePoi" onclick="deletePoi()">Delete</button>
+                                <hr>
+                                <label>Enter Url:</label><input type="text" value="11" id="inputUrl">
+                                <button type="button" id="buttonUrl" onclick="getUrl()">Go</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <h3>Places of Interests</h3>
+
+                            <div class="card" style="overflow-y:auto">
+                                <table style="width:100%" class="table table-striped" id="poiTable">
+                                    <tr id="poiContents"></tr>
+                                </table>
+                            </div>
+                            <!--Update POi -->
+                            <div id="updateModal" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <span class="close">&times;</span>
+                                        <h2 class="col-12 header-text">Update Place of Interest</h2>
+                                    </div>
+
+                                    <form id="updateUser" onsubmit="bloop();return false;">
+
+                                        <div class="form-group">
+                                            <input class="form-control" id="poiNameUpdate" type="text" name="name"
+                                                   placeholder="Name" minlength="3" maxlength="20" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" id="linkUpdate" type="url" name="link"
+                                                   pattern="https://.*" placeholder="Link" minlength="10" maxlength="50"
+                                                   required>
+                                        </div>
+
+                                        <button class="btn btn-primary form-control" type="submit" id="updatePoi">Update
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- sky scanner flight search widget -->
+<!--<div>-->
+<!--    <div data-skyscanner-widget="SearchWidget"></div>-->
+<!--    <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>-->
+<!--</div>-->
+
+
+<h6>Designed by Zohaib Zahid</h6>
+</div>
+</footer><!-- #footer -->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery-migrate.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/superfish/hoverIntent.js"></script>
+<script src="lib/superfish/superfish.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+<!-- Template Main Javascript File -->
+<script src="js/validation.js"></script>
+<script src="js/poi.js"></script>
+<script src="js/main.js"></script>
+<script src="js/index.js"></script>
+<script src="js/budget.js"></script>
+
+
+</body>
+
+</html>
