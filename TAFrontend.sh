@@ -35,4 +35,4 @@ server {
 }' >nginx.conf
 docker build -t travelapp-fe .
 # docker run --name TAfrontend --network travelapp-mysql -d -p 80:80 travelapp-fe
-docker run --name TAfrontend -d -p 80:80 travelapp-fe --restart
+docker run --restart unless-stopped --name TAfrontend -d -p 80:80 travelapp-fe 
