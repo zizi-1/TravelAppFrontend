@@ -13,6 +13,11 @@ cd TravelAppFrontend
 # echo 'FROM nginx
 # COPY . /opt/TravelAppFrontend
 # COPY nginx.conf /etc/nginx/nginx.conf' > Dockerfile
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo setfacl -m user:ubuntu:rw /var/run/docker.sock
+sudo usermod -aG docker $USER
 
 docker stop TAfrontend
 docker rm  TAfrontend
