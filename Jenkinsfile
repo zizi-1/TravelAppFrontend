@@ -9,7 +9,7 @@ pipeline {
    }
    stage('----Push to dockerhub----'){
 	steps{
-	withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+	withDockerRegistry([ credentialsId: "zohaibs-dockerhub", url: "" ]) {
 	sh "docker push zzahid1234/fronttest"
 	}
 	}
