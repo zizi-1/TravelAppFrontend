@@ -13,13 +13,7 @@ pipeline {
 	sh "docker push zzahid1234/fronttest"
 	}
 	}
-   }
-  stage('----Mvn deploy (nexus)----'){
-	steps{
-	sh "mvn deploy"
-		  }
-	  }
-	  
+   }  
 	  stage('---SSH into VM---') {
         		steps {
         		sh "ssh -T -i /home/ubuntu/Private.pem ubuntu@ec2-35-176-13-135.eu-west-2.compute.amazonaws.com"
